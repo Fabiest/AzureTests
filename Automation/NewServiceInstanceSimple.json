@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment":{
+      "defaultValue": "dev",
+      "type": "String"
+    }
+  },
+  "variables": {
+    "automationAccountName" : "[concat(parameters('environment'),'-automationpositions')]"
+  },
+  "resources": [
+   {
+    "comments": "Azure Job Automation Account Resource Instance",
+    "type": "Microsoft.Automation/automationAccounts",
+    "name": "[variables('automationAccountName')]",
+    "apiVersion": "2015-10-31",
+    "location": "[resourceGroup().location]",
+    "tags": {},
+    "scale": null,
+    "properties": {
+      "sku":{
+        "name": "free"
+      }
+    },
+    "dependsOn": []
+   }
+  ]
+}
